@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-main">
+    <h3>Gestión de Usuarios</h3>
+    <table class="dashboard-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Username</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for u in usuarios %}
+            {% set edit_id = 'edit' ~ u['idUsuario'] %}
+            {% set del_id = 'del' ~ u['idUsuario'] %}
+            <tr>
+                <td>{{ u['idUsuario'] }}</td>
+                <td>{{ u['nombre'] }}</td>
+                <td>{{ u['apellido'] }}</td>
+                <td>{{ u['username'] }}</td>
+                <td>{{ u['nombreRol'] }}</td>
+                <td>
+                    <button class="dashboard-btn dashboard-btn-edit" onclick="openDashboardModal('{{ edit_id }}')">Editar</button>
+                    <button class="dashboard-btn dashboard-btn-delete" onclick="openDashboardModal('{{ del_id }}')">Eliminar</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modales independientes al final del bloque -->
+{% for u in usuarios %}
+    {% set edit_id = 'edit' ~ u['idUsuario'] %}
+    {% set del_id = 'del' ~ u['idUsuario'] %}
+    <!-- Modal Editar Usuario -->
+    <div class="dashboard-modal" id="{{ edit_id }}" style="display:none;">
+        <div class="dashboard-modal-backdrop" onclick="closeDashboardModal('{{ edit_id }}')"></div>
+        <div class="dashboard-modal-content">
+            <div class="dashboard-modal-header">
+                <h4>Editar Usuario: {{ u['nombre'] }} {{ u['apellido'] }}</h4>
+                <button type="button" class="dashboard-modal-close" onclick="closeDashboardModal('{{ edit_id }}')">&times;</button>
+            </div>
+            <form action="{{ url_for('actualizar', id=u['idUsuario']) }}" method="POST" class="dashboard-modal-form">
+                <div class="dashboard-modal-group">
+                    <label for="nombre{{ u['idUsuario'] }}">Nombre</label>
+                    <input type="text" name="nombre" id="nombre{{ u['idUsuario'] }}" value="{{ u['nombre'] }}" required>
+                </div>
+                <div class="dashboard-modal-group">
+                    <label for="apellido{{ u['idUsuario'] }}">Apellido</label>
+                    <input type="text" name="apellido" id="apellido{{ u['idUsuario'] }}" value="{{ u['apellido'] }}" required>
+                </div>
+                <div class="dashboard-modal-group">
+                    <label for="correo{{ u['idUsuario'] }}">Correo Electrónico</label>
+                    <input type="email" name="correo" id="correo{{ u['idUsuario'] }}" value="{{ u['username'] }}" required>
+                </div>
+                <div class="dashboard-modal-group">
+                    <label for="rol{{ u['idUsuario'] }}">Rol</label>
+                    <select name="rol" id="rol{{ u['idUsuario'] }}">
+                        <option value="1" {% if u['idRol']==1 %}selected{% endif %}>Admin</option>
+                        <option value="2" {% if u['idRol']==2 %}selected{% endif %}>Usuario</option>
+                    </select>
+                </div>
+                <div class="dashboard-modal-footer">
+                    <button type="submit" class="dashboard-btn dashboard-btn-edit">Guardar Cambios</button>
+                    <button type="button" class="dashboard-btn dashboard-btn-delete" onclick="closeDashboardModal('{{ edit_id }}')">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar Usuario -->
+    <div class="dashboard-modal" id="{{ del_id }}" style="display:none;">
+        <div class="dashboard-modal-backdrop" onclick="closeDashboardModal('{{ del_id }}')"></div>
+        <div class="dashboard-modal-content">
+            <div class="dashboard-modal-header">
+                <h4>Confirmar Eliminación</h4>
+                <button type="button" class="dashboard-modal-close" onclick="closeDashboardModal('{{ del_id }}')">&times;</button>
+            </div>
+            <div class="dashboard-modal-body">
+                ¿Está seguro que desea eliminar al usuario: <strong>{{ u['nombre'] }} {{ u['apellido'] }}</strong>?
+            </div>
+            <div class="dashboard-modal-footer">
+                <button type="button" class="dashboard-btn" onclick="closeDashboardModal('{{ del_id }}')">Cancelar</button>
+                <a href="{{ url_for('eliminar', id=u['idUsuario']) }}" class="dashboard-btn dashboard-btn-delete">Eliminar</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

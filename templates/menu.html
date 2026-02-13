@@ -1,0 +1,30 @@
+<nav class="menu-custom">
+    <div class="menu-container">
+        <a class="menu-brand" href="{{ url_for('index') }}" target="_parent">
+        <img src="{{url_for('static',filename='img/apifood.jpeg')}}" alt="Logo ApiFood" class="logo-index" width="50" height="50" ></a>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <span class="menu-toggle-icon">☰</span>opciones
+        </button>
+    <div class="menu-links" id="navbarID">
+        <ul class="menu-list menu-list-left">
+            <li><a class="menu-link" href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a class="menu-link" href="{{ url_for('catalogo') }}">Catalogo</a></li>
+            <li><a class="menu-link" href="{{ url_for('contacto') }}">Contacto</a></li>
+            <li><a class="menu-link" href="{{ url_for('sobre_apifood') }}">Sobre ApiFood</a></li>
+        {% if session.get('rol')== 'Admin' %}
+            <li><a class="menu-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a class="menu-link" href="{{ url_for('inventario') }}">Inventario</a></li>
+        {% endif %}
+    </ul>
+    <ul class="menu-list menu-list-right">
+            {% if session.get('usuario') %}
+            <li><a class="menu-link" href="{{ url_for('carrito') }}">🛒 {{ carrito_cantidad }}</a></li>
+            <li><a class="menu-link" href="">Hola, {{ session['usuario'] }}</a></li>
+            <li><a class="menu-link" href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+            {% else %}
+            <li><a class="menu-link" href="{{ url_for('login') }}">Iniciar sesión</a></li>
+            {% endif %}
+                </ul>
+        </div>
+        </div>   
+</nav>

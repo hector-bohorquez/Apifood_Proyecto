@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Pago{% endblock %}
+
+{% block content %}
+<div class="carrito-view">
+    <h2 style="text-align: center; margin-top: 20px;">Resumen de compra</h2>
+
+    {% if productos %}
+
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <table class="tabla_carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td>{{ p.nombre_producto }}</td>
+                    <td>{{ p.cantidad }}</td>
+                    <td>${{ "{:,.0f}".format(p.precio) }}</td>
+                    <td>${{ "{:,.0f}".format(p.precio * p.cantidad) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="total-box">
+        Total: ${{ "{:,.0f}".format(total) }}
+    </div>
+
+    <div style="margin-top: 15px; text-align: right; padding: 0 20px;">
+        <form method="POST" class="mt-4" style="text-align: right;">
+            <div class="pago-radio-group">
+                <label class="pago-radio">
+                    <input type="radio" name="metodo_pago" value="Nequi" required>
+                    <span>Nequi</span>
+                </label>
+                <label class="pago-radio">
+                    <input type="radio" name="metodo_pago" value="Daviplata">
+                    <span>Daviplata</span>
+                </label>
+                <label class="pago-radio">
+                    <input type="radio" name="metodo_pago" value="Tarjeta">
+                    <span>Tarjeta débito</span>
+                </label>
+            </div>
+            <button type="submit" class="pago-btn">Pagar</button>
+        </form>
+    </div>
+    {% else %}
+    <p style="text-align: center; font-size: 1.2em; margin-top: 20px;">No hay productos en el resumen.</p>
+    {% endif %}
+</div>
+{% endblock %}

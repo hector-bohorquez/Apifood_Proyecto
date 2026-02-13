@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio | ApiFood{% endblock %}
+
+{% block content %}
+<div class="main-home">
+    <div class="home-center">
+        <img src="{{ url_for('static', filename='img/apifood.jpeg') }}" alt="Logo ApiFood" class="home-logo">
+        <h1 class="home-title">Bienvenido a ApiFood</h1>
+        <p class="home-lead">Tu plataforma para pedir comida fácil, rápido y seguro.<br>Explora nuestro catálogo y disfruta de los mejores productos.</p>
+        <a href="{{ url_for('catalogo') }}" class="home-btn">Ver catálogo</a>
+    </div>
+</div>
+{% endblock %}

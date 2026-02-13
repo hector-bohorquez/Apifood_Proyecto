@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Forgot{% endblock %}
+
+{% block content %}
+<!-- Password Reset -->
+<section class="forgot-section">
+  <div class="forgot-container">
+    <div class="forgot-card">
+      <div class="forgot-logo">
+        <img src="{{ url_for('static', filename='img/apifood.jpeg') }}" alt="apifood Logo" width="80" height="80">
+      </div>
+      <h2 class="forgot-title">Recupera tu contraseña</h2>
+      <p class="forgot-desc">Proporcione la dirección de correo electrónico asociada a su cuenta para recuperar su contraseña.</p>
+      <form action="#!" method="POST" class="forgot-form">
+        <div class="forgot-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="name@example.com" required>
+        </div>
+        <button class="forgot-btn" type="submit">Recuperar contraseña</button>
+        <div class="forgot-links">
+          <a href="{{ url_for('login') }}">Iniciar sesión</a>
+          <a href="{{ url_for('registro') }}">Registrarse</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Restablecer contraseña{% endblock %}
+
+{% block content %}
+<!-- Password Reset -->
+<section class="reset-section">
+  <div class="reset-container">
+    <div class="reset-card">
+      <div class="reset-logo">
+        <img src="{{ url_for('static', filename='img/apifood.jpeg') }}" alt="apifood Logo" width="80" height="80">
+      </div>
+      <h2 class="reset-title">Ingresa tu nueva contraseña</h2>
+      <form action="#!" method="POST" class="reset-form">
+        <div class="reset-group">
+          <label for="password">Nueva contraseña</label>
+              <div class="password-wrapper">
+                <input type="password" name="password" id="password" placeholder="Nueva contraseña" required class="password-input">
+                <span class="toggle-password" data-target="password">                 
+                <img src="{{ url_for('static', filename='img/eye.png') }}" alt="Mostrar contraseña" width="22" height="22" class="eye-icon">
+              </span>
+            </div>
+        </div>
+        <div class="reset-group">
+          <label for="confirma">Confirmar nueva contraseña</label>
+              <div class="password-wrapper">
+                <input type="password" name="confirma" id="confirma" placeholder="Confirmar nueva contraseña" required class="password-input">
+                <span class="toggle-password" data-target="confirma">
+                <img src="{{ url_for('static', filename='img/eye.png') }}" alt="Mostrar contraseña" width="22" height="22" class="eye-icon">
+              </span>
+            </div>
+        </div>
+        <button class="reset-btn" type="submit">Guardar nueva contraseña</button>
+        <div class="reset-links">
+          <a href="{{ url_for('login') }}">Volver al login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

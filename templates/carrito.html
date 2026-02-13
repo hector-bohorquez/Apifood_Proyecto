@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block content %}
+
+<div class="carrito-view">
+    <h2 style="text-align: center; margin-top: 20px;">Carrito de Compras</h2>
+    
+    {% if productos %}
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <table class="tabla_carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Imagen</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in productos %}
+                <tr>
+                    <td>{{ item.nombre_producto }}</td>
+                    <td><img src="{{ url_for('static', filename='uploads/' + item.imagen) }}" width="80" alt="{{ item.nombre_producto }}"></td>
+                    <td>
+                        <form action="{{ url_for('actualizar_carrito', id=item.idProducto) }}" method="post"
+                        style="display: flex; align-items: center; justify-content: center; gap: 5px;">
+                        <input type="hidden" name="cantidad_actual" value="{{ item.cantidad }}">
+                        <button type="submit" name="accion" value="restar" class="carrito-btn carrito-btn-restar"
+                        {% if item.cantidad <=1 %} disabled {% endif %}>-</button>
+                        <input type="text" name="cantidad_manual" value="{{ item.cantidad }}" min="1"
+                        style="width: 60px; text-align: center;" readonly>
+                        <button type="submit" name="accion" value="sumar" class="carrito-btn carrito-btn-sumar"
+                        {% if item.cantidad >= item.stock %} disabled {% endif %}>+</button>
+                    </form>
+                    </td>
+                    <td>${{ "{:,.0f}".format(item.precio) }}</td>
+                    <td>${{ "{:,.0f}".format(item.precio * item.cantidad) }}</td>
+                    <td>
+                        <a href="{{ url_for('eliminar_del_carrito', id=item.idProducto) }}" class="carrito-btn carrito-btn-eliminar">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    <div class="total-box">
+        Total: ${{ "{:,.0f}".format(total) }}
+    </div>
+
+    <div style="margin-top: 15px; text-align: right;">
+    <a href="{{ url_for('vaciar_carrito') }}" class="carrito-btn carrito-btn-vaciar">Vaciar Carrito</a>
+    <a href="{{ url_for('pago') }}" class="carrito-btn carrito-btn-pago">Proceder al pago</a>
+    </div>
+    {% else %}
+
+    <p style="text-align: center; font-size: 1.2em; margin-top: 20px;">Tu carrito está vacío.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

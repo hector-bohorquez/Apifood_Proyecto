@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<!-- Registro -->
+<section class="register-section">
+  <div class="register-container">
+    <div class="register-img">
+      <h3>¡Bienvenido!</h3>
+      <img src="{{ url_for('static', filename='img/portada.jpg') }}" alt="portada de registro" loading="lazy">
+      <p>¿No eres miembro aún? <a href="#!">Regístrate ahora</a></p>
+    </div>
+    <div class="register-form-container">
+      <h2>Registro</h2>
+      <h3 class="register-sub">Introduce tus datos para registrarte</h3>
+      <form action="{{ url_for('registro') }}" method="POST" class="register-form">
+        <div class="register-group">
+          <label for="nombre">Nombre <span class="required">*</span></label>
+          <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+        </div>
+        <div class="register-group">
+          <label for="apellido">Apellido <span class="required">*</span></label>
+          <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+        </div>
+        <div class="register-group">
+          <label for="username">Email <span class="required">*</span></label>
+          <input type="email" name="username" id="username" placeholder="nombre@ejemplo.com" required>
+        </div>
+        <div class="register-group">
+          <label for="password">Password <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" name="password" id="password" required class="password-input">
+                <span class="toggle-password" data-target="password">
+                <img src="{{ url_for('static', filename='img/eye.png') }}" alt="Mostrar contraseña" width="22" height="22" class="eye-icon">
+              </span>
+            </div>
+        </div>
+        <div class="register-group register-checkbox">
+          <label>
+            <input type="checkbox" name="iAgree" id="iAgree" required>
+            Acepto los <a href="#!">términos y condiciones</a>
+          </label>
+        </div>
+        <button class="register-btn" type="submit">Regístrate</button>
+      </form>
+      <div class="register-extra">
+        <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Iniciar sesión</a></p>
+    <!--
+        <p class="register-or">O inicia sesión con</p>
+        <div class="register-social">
+          <a href="#!" class="register-social-btn google">Google</a>
+          <a href="#!" class="register-social-btn facebook">Facebook</a>
+          <a href="#!" class="register-social-btn twitter">Twitter</a>
+        </div>
+    -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

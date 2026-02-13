@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobre Apifood{% endblock %}
+
+{% block content %}
+
+<main>
+    <section class="info">
+      <div class="text">
+        <h2>¿Quiénes somos?</h2>
+        <p>
+          En <strong>Apifood</strong>, somos una plataforma innovadora que conecta restaurantes y usuarios para llevar comida deliciosa a la puerta de tu casa. Nuestro equipo está comprometido con la calidad, la rapidez y la experiencia del cliente.
+        </p>
+      </div>
+      <img src="{{url_for('static',filename='img/equipo.jpg')}}" alt="Equipo Apifood"/> 
+    </section>
+
+    <section class="info reverse">
+      <div class="text">
+        <h2>Misión</h2>
+        <p>
+          Brindar un servicio de entrega de alimentos ágil, seguro y eficiente, mejorando la experiencia gastronómica de nuestros usuarios y apoyando el crecimiento de restaurantes aliados.
+        </p>
+      </div>
+      <img src="{{url_for('static',filename='img/mision.jpg')}}" alt="Misión Apifood"/>
+    </section>
+
+    <section class="info">
+      <div class="text">
+        <h2>Visión</h2>
+        <p>
+          Ser la aplicación líder de domicilios de comida en Latinoamérica, reconocida por la innovación tecnológica y excelencia en servicio al cliente.
+        </p>
+      </div>
+      <img src="{{url_for('static',filename='img/vision.jpg')}}" alt="Visión Apifood"/>
+    </section>
+
+    <section class="info reverse">
+      <div class="text">
+        <h2>Objetivos</h2>
+        <ul>
+          <li>Ofrecer una experiencia de usuario intuitiva y eficiente.</li>
+          <li>Ampliar nuestra red de restaurantes aliados en todo el país.</li>
+          <li>Garantizar entregas rápidas y seguras.</li>
+          <li>Promover prácticas sostenibles en el proceso de entrega.</li>
+        </ul>
+      </div>
+      <img src="{{url_for('static',filename='img/objetivos.jpg')}}" alt="Objetivos Apifood"/>
+    </section>
+  </main>    
+
+
+{% endblock %}

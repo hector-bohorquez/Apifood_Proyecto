@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+
+<main>
+        <section class="contacto">
+            <h2>Contáctanos</h2>
+            <p>¿Tienes preguntas, sugerencias o quieres hacer un pedido especial? Rellena el formulario o usa nuestros canales de atención.</p>
+
+            <form action="#" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <section class="info-contacto">
+            <h3>Información de contacto</h3>
+            <ul>
+                <li><strong>Teléfono:</strong> <a href="tel:+573202020202">+57 320 202 0202</a></li>
+                <li><strong>Email:</strong> <a href="mailto:notificaciones@apifood.com">notificaciones@apifood.com</a></li>
+                <li><strong>Dirección:</strong> Barranquilla, Colombia</li>
+            </ul>
+        </section>
+    </main>
+
+    {% endblock %}

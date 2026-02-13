@@ -1,0 +1,9 @@
+{% extends './base.html' %}
+{% block title %}Pagina no encontrada{% endblock %}
+{% block content %}
+    <div class="error-view">
+        <h1 class="error-title">405</h1>
+        <p class="error-msg">Método no permitido o página no disponible.</p>
+        <a href="{{ url_for('index') }}" class="error-btn">Llévame a la página principal</a>
+    </div>
+{% endblock %}

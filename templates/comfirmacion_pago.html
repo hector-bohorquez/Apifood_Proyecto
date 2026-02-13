@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}ConfirmacionPago{% endblock %}
+
+{% block content %}
+
+<div class="confirmacion-pago-view">
+    <h2 class="confirmacion-pago-title">¡Gracias por tu compra!</h2>
+    <p>Método de pago: <strong>{{metodo}}</strong></p>
+    <p>Código de transacción: <strong>{{codigo}}</strong></p>
+    <p>Total pagado: <strong>${{ "{:,.0f}".format(total)}}</strong></p>
+    <a href="{{url_for('catalogo')}}" class="confirmacion-pago-btn">Volver al catálogo</a>
+</div>
+
+{% endblock %}
