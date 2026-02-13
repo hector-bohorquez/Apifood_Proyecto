@@ -11,15 +11,19 @@ import secrets
 from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde .env
+load_dotenv()
 
 # Configuración de la aplicación Flask y MySQL
 app = Flask(__name__)
-app.secret_key = 'clave_secreta'
+app.secret_key = os.getenv('SECRET_KEY', 'clave_secreta_por_defecto')
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234'
-app.config['MYSQL_DB'] = 'bd_app'
+app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST', 'localhost')
+app.config['MYSQL_USER'] = os.getenv('MYSQL_USER', 'root')
+app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '')
+app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'bd_app')
 
 mysql = MySQL(app)
 
@@ -183,8 +187,8 @@ def enviar_correo_reset(email, token):
     Este enlace expira en 1 hora.
     Si no lo solicitaste, ignora este mensaje."""
 
-    remitente = 'apifood.recovery.key@gmail.com'
-    clave = 'tayg lfsz inon hiqm'
+    remitente = os.getenv('MAIL_USER')
+    clave = os.getenv('MAIL_PASSWORD')
     mensaje = MIMEText(cuerpo)
     mensaje['Subject'] = 'Restablecer tu contraseña'
     mensaje['From'] = remitente
