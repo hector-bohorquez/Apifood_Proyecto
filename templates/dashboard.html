@@ -50,6 +50,7 @@
                 <button type="button" class="dashboard-modal-close" onclick="closeDashboardModal('{{ edit_id }}')">&times;</button>
             </div>
             <form action="{{ url_for('actualizar', id=u['idUsuario']) }}" method="POST" class="dashboard-modal-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="dashboard-modal-group">
                     <label for="nombre{{ u['idUsuario'] }}">Nombre</label>
                     <input type="text" name="nombre" id="nombre{{ u['idUsuario'] }}" value="{{ u['nombre'] }}" required>

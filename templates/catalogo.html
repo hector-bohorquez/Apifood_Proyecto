@@ -29,6 +29,7 @@
                         <span style="font-size:1.3em;color:#28a745;font-weight:bold;">${{ "{:,.0f}".format(p.precio) }}</span>
                     </p>
                     <form action="{{ url_for('agregarCarrito', id=p.idProducto) }}" method="POST" class="catalogo-form">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <div class="catalogo-form-row">
                             <input type="number" name="cantidad" min="1" value="1" max="{{p.cantidad}}" class="catalogo-input-cant" {% if p.cantidad == 0 %} disabled {% endif %}>
                             {% if p.cantidad == 0 %}

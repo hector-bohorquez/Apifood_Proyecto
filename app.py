@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 
 # Cargar variables de entorno desde .env
 load_dotenv()
@@ -26,6 +27,9 @@ app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD', '')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'bd_app')
 
 mysql = MySQL(app)
+
+# Inicializar protección CSRF
+csrf = CSRFProtect(app)
 
 # Rutas de la aplicación
 @app.route('/')

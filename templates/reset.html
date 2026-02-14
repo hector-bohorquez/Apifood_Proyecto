@@ -13,6 +13,7 @@
       </div>
       <h2 class="reset-title">Ingresa tu nueva contraseña</h2>
       <form action="#!" method="POST" class="reset-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="reset-group">
           <label for="password">Nueva contraseña</label>
               <div class="password-wrapper">

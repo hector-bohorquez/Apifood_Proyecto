@@ -16,6 +16,7 @@
       <h2>Registro</h2>
       <h3 class="register-sub">Introduce tus datos para registrarte</h3>
       <form action="{{ url_for('registro') }}" method="POST" class="register-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="register-group">
           <label for="nombre">Nombre <span class="required">*</span></label>
           <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>

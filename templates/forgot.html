@@ -14,6 +14,7 @@
       <h2 class="forgot-title">Recupera tu contraseña</h2>
       <p class="forgot-desc">Proporcione la dirección de correo electrónico asociada a su cuenta para recuperar su contraseña.</p>
       <form action="#!" method="POST" class="forgot-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="forgot-group">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" placeholder="name@example.com" required>

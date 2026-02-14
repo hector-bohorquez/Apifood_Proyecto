@@ -38,6 +38,7 @@
 
     <div style="margin-top: 15px; text-align: right; padding: 0 20px;">
         <form method="POST" class="mt-4" style="text-align: right;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <div class="pago-radio-group">
                 <label class="pago-radio">
                     <input type="radio" name="metodo_pago" value="Nequi" required>

@@ -45,6 +45,7 @@
                 <button type="button" class="inventario-modal-close" data-close="modalAgregar">&times;</button>
             </div>
             <form method="POST" action="{{ url_for('agregar_producto') }}" enctype="multipart/form-data" class="inventario-modal-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="inventario-modal-group">
                     <label for="nombre">Nombre del Producto</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -85,6 +86,7 @@
                 <button type="button" class="inventario-modal-close" data-close="ModalEdit{{ p['idProducto'] }}">&times;</button>
             </div>
             <form action="{{ url_for('actualizarProducto', id=p['idProducto']) }}" method="POST" enctype="multipart/form-data" class="inventario-modal-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="inventario-modal-group">
                     <label for="nombre{{ p['idProducto'] }}">Nombre</label>
                     <input type="text" name="nombre" id="nombre{{ p['idProducto'] }}" value="{{ p['nombre_producto'] }}" required>

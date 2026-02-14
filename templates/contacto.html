@@ -10,6 +10,7 @@
             <p>¿Tienes preguntas, sugerencias o quieres hacer un pedido especial? Rellena el formulario o usa nuestros canales de atención.</p>
 
             <form action="#" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
 
